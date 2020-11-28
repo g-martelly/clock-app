@@ -1,5 +1,5 @@
 
-const timer = setInterval(displayDateAndTime, 1000);
+const timer = setInterval(displayDateAndTime, 500);
 var toggle = 24;
 document.getElementById('12hourFormat').hidden = true;
 
@@ -19,8 +19,7 @@ function displayDateAndTime() {
     var seconds = date.getSeconds();
     
     //Add leading zeros for the time
-    hour24 = ("0" + hour).slice(-2);
-    hour12 = hour;
+    hour = ("0" + hour).slice(-2);
     minute = ("0" + minute).slice(-2);
     seconds = ("0" + seconds).slice(-2);
 
@@ -31,7 +30,7 @@ function displayDateAndTime() {
 
     dateField.innerHTML = currentDay + ", " + month + " " + day + ", " + year;
     timeField24h.innerHTML = hour + ":" + minute + ":" + seconds;
-    timeField12h.innerHTML = Math.trunc(hour12/2) + ":" + minute + ":" + seconds + " " + am_pm();
+    timeField12h.innerHTML = calculateHour() + ":" + minute + ":" + seconds + " " + am_pm();
 
     function am_pm () {
         if (hour > 11) {
@@ -39,6 +38,19 @@ function displayDateAndTime() {
         } else {
             return "AM";
         } 
+    }
+
+    function calculateHour(){
+        var h = date.getHours()
+        if (h == 0) {
+            return 12;
+        } 
+         if (hour > 12) {
+            return h - 12;
+        } else {
+            return hour;
+        }
+
     }
 }
 
@@ -48,10 +60,13 @@ function toggleFormat() {
     if (toggle === 24){
         document.getElementById('24hourFormat').hidden = true;
         document.getElementById('12hourFormat').hidden = false;
+        document.getElementById("toggleButton").innerHTML = "24 Hour";
         toggle = 12;
+
     } else {
         document.getElementById('24hourFormat').hidden = false;
         document.getElementById('12hourFormat').hidden = true; 
+        document.getElementById("toggleButton").innerHTML = "12 Hour";
         toggle = 24;
     };
 
