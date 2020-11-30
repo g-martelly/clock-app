@@ -1,0 +1,15 @@
+body 
+{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 12;
+    background-color: black;
+
+}
+
+div#clock 
+{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: blueviolet;
+    text-align: center;
+}
