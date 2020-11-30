@@ -1,5 +1,5 @@
 
-const timer = setInterval(displayDateAndTime, 500);
+const timer = setInterval(displayDateAndTime, 1000);
 var toggle = 24;
 document.getElementById('12hourFormat').hidden = true;
 
@@ -11,7 +11,9 @@ function displayDateAndTime() {
     var currentDay= daysOfTheWeek[date.getDay()];
     var month = months[date.getMonth()]; 
     var year = date.getFullYear();
-    var day = date.getDay();
+    var day = date.getDate();
+
+   // console.log("day is + " + day + " " + date);
 
     //Get time
     var hour = date.getHours();
@@ -28,7 +30,7 @@ function displayDateAndTime() {
     var timeField24h= document.getElementById('24hourFormat');
     var timeField12h= document.getElementById('12hourFormat');
 
-    dateField.innerHTML = currentDay + ", " + month + " " + day + ", " + year;
+    dateField.innerHTML = currentDay + ", " + month + " " + day + "," + year;
     timeField24h.innerHTML = hour + ":" + minute + ":" + seconds;
     timeField12h.innerHTML = calculateHour() + ":" + minute + ":" + seconds + " " + am_pm();
 
